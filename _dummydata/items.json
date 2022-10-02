@@ -1,0 +1,14 @@
+[
+    {
+		"_id": "5d7a514b5d2c12c7449be044",
+		"title": "Item 1",
+		"description": "Description of Item 1",
+		"image": "https://i.imgur.com/K4l2uWG.jpg"
+	},
+    {
+		"_id": "5d7a514b5d2c12c7449be045",
+		"title": "Item 2",
+		"description": "Description of Item 2",
+		"image": "https://firebasestorage.googleapis.com/v0/b/gyft-v1.appspot.com/o/images%2Ftest-image?alt=media&token=4ea84ae6-2591-4e25-bcb5-d33f5a4c8a59"
+	}
+]
