@@ -7,7 +7,7 @@ const connectDB = async () => {
         dbName: 'gyft'
     });
 
-    console.log('MongoDB Connected'.bold.underline.cyan);
+    console.log('MongoDB Connected'.bold.green.inverse);
 }
 
 module.exports = connectDB;

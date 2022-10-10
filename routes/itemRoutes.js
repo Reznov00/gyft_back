@@ -3,9 +3,10 @@ const { getItems, getItem, createItem, updateItem, deleteItem } = require('../co
 
 const router = express.Router({ mergeParams: true });
 
+router.route('/:lat/:lon/:distance').get(getItems);
+
 router
   .route('/')
-  .get(getItems)
   .post(createItem);
 
 router
