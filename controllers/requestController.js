@@ -18,7 +18,8 @@ exports.getRequests_Admin = asyncHandler(async (req, res, next) => {
 // @route     GET /api/requests/:lat/:lon/:distance
 // @access    Private
 exports.getRequests = asyncHandler(async (req, res, next) => {
-  const { lon, lat, distance } = req.params;
+  const { lon, lat, distance, user } = req.params;
+  console.log(user);
 
   // Calc radius using radians
   // Divide dist by radius of Earth
@@ -26,11 +27,16 @@ exports.getRequests = asyncHandler(async (req, res, next) => {
   const radius = distance / 3963.2;
 
   const requests = await Request.find({
-    location: {
-      $geoWithin: {
-        $centerSphere: [[lon, lat], radius],
+    $and: [
+      {
+        location: {
+          $geoWithin: {
+            $centerSphere: [[lon, lat], radius],
+          },
+        },
       },
-    },
+      { user: { $ne: user } },
+    ],
   });
 
   res.status(200).json({

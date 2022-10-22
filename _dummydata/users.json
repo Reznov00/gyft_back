@@ -1,23 +1,33 @@
-[
-	{
-		"_id": "5d7a514b5d2c12c7449be044",
-		"name": "User Account",
-		"email": "user@gmail.com",
-		"password": "12345678",
-		"cnic": "12345-1234567-1"
-	},
-	{
-		"_id": "5d7a514b5d2c12c7449be045",
-		"name": "John Doe",
-		"email": "john@gmail.com",
-		"password": "12345678",
-		"cnic": "23456-1234567-2"
-	},
-	{
-		"_id": "5d7a514b5d2c12c7449be046",
-		"name": "Kevin Smith",
-		"email": "kevin@gmail.com",
-		"password": "12345678",
-		"cnic": "34567-1234567-3"
-	}
-]
+[{
+  "_id": "5d7a514b5d2c12c7449be046",
+  "name": "Kevin Smith",
+  "email": "kevin@gmail.com",
+  "password": "$2b$10$0Do6hzZBpPvxbPhIiYUZq.FsQDkfTNtWQP8pTR/D6UmPZPgCUfSjm",
+  "requests": [],
+  "cnic": "34567-1234567-3",
+  "__v": 0
+},{
+  "_id": "5d7a514b5d2c12c7449be044",
+  "name": "User Account",
+  "email": "user@gmail.com",
+  "password": "$2b$10$zOxJwn.URsvsim28nUXHteQEmqwWD1LakBH5AtjVyTMWiywaCtY8e",
+  "requests": [],
+  "cnic": "12345-1234567-1",
+  "__v": 0
+},{
+  "_id": "5d7a514b5d2c12c7449be045",
+  "name": "John Doe",
+  "email": "john@gmail.com",
+  "password": "$2b$10$vp14hT0xLhwqydxh8BzV9u/QqS5.7dASXA/gOHz/HCMBHdI0UIDLa",
+  "cnic": "23456-1234567-2",
+  "requests": [],
+  "__v": 0
+},{
+  "_id": "63372e4bb836a7cabacac7df",
+  "name": "Aamir Rasheed",
+  "email": "aamir@gyft.com",
+  "password": "$2b$10$xFSmByG3QLEFCMYqWzHY3eAck3IVHzsy9V4iu6g/shL0opTnO4xaq",
+  "cnic": "61101-1923213-1",
+  "requests": [],
+  "__v": 0
+}]

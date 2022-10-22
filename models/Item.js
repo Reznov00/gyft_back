@@ -22,6 +22,8 @@ const ItemSchema = mongoose.Schema({
     required: [true, 'Please enter a phone number for the item'],
   },
   user: { type: String },
+  interested: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+  approved: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
   location: {
     type: {
       type: String,

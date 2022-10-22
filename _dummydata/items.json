@@ -1,14 +1,50 @@
-[
-    {
-		"_id": "5d7a514b5d2c12c7449be044",
-		"title": "Item 1",
-		"description": "Description of Item 1",
-		"image": "https://i.imgur.com/K4l2uWG.jpg"
-	},
-    {
-		"_id": "5d7a514b5d2c12c7449be045",
-		"title": "Item 2",
-		"description": "Description of Item 2",
-		"image": "https://firebasestorage.googleapis.com/v0/b/gyft-v1.appspot.com/o/images%2Ftest-image?alt=media&token=4ea84ae6-2591-4e25-bcb5-d33f5a4c8a59"
-	}
-]
+[{
+  "_id": "6341d6147c38187eec0fa7f6",
+  "title": "Nike Shoes",
+  "description": "9/10 Nike Air Force",
+  "image": "https://i.imgur.com/wQbHSCz.jpg",
+  "address": "G-11, G-11, Islamabad, Islamabad Capital Territory, Pakistan",
+  "phone": "03237713341",
+  "user": "aamir@gyft.com",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      33.669409,
+      72.997193
+    ]
+  },
+  "__v": 0,
+  "interested": []
+},{
+  "_id": "6343ccd38b385c80bfdd209f",
+  "title": "Test Item",
+  "description": "Item for Test",
+  "image": "https://i.imgur.com/xvKRPme.jpg",
+  "address": "COMSATS University Islamabad, Wah Campus, Mall Road, Quaid Avenue, Wah Cantt, Rawalpindi, Punjab, Pakistan",
+  "phone": "03126611283",
+  "user": "aamir@gyft.com",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      33.7445424,
+      72.7866556
+    ]
+  },
+  "__v": 0
+},{
+  "_id": "6347049032ab887463709461",
+  "title": "jjajaja",
+  "description": "vvahqbz dvwnalosjebw. hajqilqmBshqjqn\njajakaj\nhahaja",
+  "image": "https://i.imgur.com/ojAToG6.jpg",
+  "address": "KSB Pumps Colony hazara road hassan abdal, RPG9+JG9, Wah, Rawalpindi, Punjab, Pakistan",
+  "phone": "03237813723",
+  "user": "aamir@gyft.com",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      33.8265325,
+      72.7188701
+    ]
+  },
+  "__v": 0
+}]

@@ -9,7 +9,7 @@ const {
 
 const router = express.Router({ mergeParams: true });
 
-router.route('/:lat/:lon/:distance').get(getRequests);
+router.route('/:user/:lat/:lon/:distance').get(getRequests);
 
 router.route('/').post(createRequest);
 
