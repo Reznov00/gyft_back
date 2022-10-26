@@ -46,6 +46,24 @@ exports.getRequests = asyncHandler(async (req, res, next) => {
   });
 });
 
+// @desc      Get all requests posted by one user
+// @route     GET /api/requests/:user
+// @access    Private
+exports.getRequestsPostedByUser = asyncHandler(async (req, res, next) => {
+  const { user } = req.params;
+
+  console.log(user);
+
+  const requests = await Request.find({ user: user });
+
+  res.status(200).json({
+    success: true,
+    count: requests.length,
+    data: requests,
+  });
+  next();
+});
+
 // @desc      Get single request
 // @route     GET /api/requests/:id
 // @access    Private/Admin

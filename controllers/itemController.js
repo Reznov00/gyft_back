@@ -157,7 +157,7 @@ exports.addInterestedUser = asyncHandler(async (req, res, next) => {
   next();
 });
 
-// @desc      Add Interested User
+// @desc      Delete Interested User
 // @route     PUT /api/items/:id/remove
 // @access    Private/Admin
 exports.deleteInterestedUser = asyncHandler(async (req, res, next) => {
