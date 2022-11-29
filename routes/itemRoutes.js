@@ -14,7 +14,7 @@ const {
 
 const router = express.Router({ mergeParams: true });
 
-router.route('/:user').get(getItemsPostedByUser);
+router.route('/posted/:user').get(getItemsPostedByUser);
 router.route('/:id/requests').get(getRequests);
 router.route('/:user/:lat/:lon/:distance').get(getItems);
 
@@ -24,6 +24,6 @@ router.route('/:id/approve').put(addApprovedUser);
 
 router.route('/').post(createItem);
 
-router.route('/:id').get(getItem).put(updateItem).delete(deleteItem);
+router.route('/:id').get(getItem).patch(updateItem).delete(deleteItem);
 
 module.exports = router;

@@ -3,9 +3,13 @@ const mongoose = require('mongoose');
 const colors = require('colors');
 const dotenv = require('dotenv');
 
-const User = require('./models/User');
+// const User = require('./models/User');
+const user = require('./models/User');
+const User = user.Model;
 const Item = require('./models/Item');
 const Request = require('./models/Request');
+const Query = require('./models/Query');
+const Volunteer = require('./models/Volunteer');
 
 dotenv.config({ path: './config/config.env' });
 
@@ -42,6 +46,8 @@ const deleteData = async () => {
     await User.deleteMany();
     await Item.deleteMany();
     await Request.deleteMany();
+    await Query.deleteMany();
+    await Volunteer.deleteMany();
     console.log('Data Deleted...'.red.inverse);
     process.exit();
   } catch (err) {

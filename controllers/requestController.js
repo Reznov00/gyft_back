@@ -47,14 +47,10 @@ exports.getRequests = asyncHandler(async (req, res, next) => {
 });
 
 // @desc      Get all requests posted by one user
-// @route     GET /api/requests/:user
+// @route     GET /api/requests/posted/:user
 // @access    Private
 exports.getRequestsPostedByUser = asyncHandler(async (req, res, next) => {
-  const { user } = req.params;
-
-  console.log(user);
-
-  const requests = await Request.find({ user: user });
+  const requests = await Request.find({ user: req.params.user });
 
   res.status(200).json({
     success: true,
@@ -91,21 +87,18 @@ exports.createRequest = asyncHandler(async (req, res, next) => {
 });
 
 // @desc      Update request
-// @route     PUT /api/requests/:id
+// @route     PATCH /api/requests/:id
 // @access    Private/Admin
 exports.updateRequest = asyncHandler(async (req, res, next) => {
   const request = await Request.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-    runValidators: true,
+    returnOriginal: false,
   });
-  if (!request)
-    return next(
-      new ErrorResponse(404, `No request found for ${req.params.id}`)
-    );
+
   res.status(200).json({
     success: true,
     data: request,
   });
+  next();
 });
 
 // @desc      Delete request

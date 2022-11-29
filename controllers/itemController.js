@@ -1,7 +1,8 @@
 const ErrorResponse = require('../utils/errorResponse');
 const asyncHandler = require('../middlewares/async');
 const Item = require('../models/Item');
-const User = require('../models/User');
+const user = require('../models/User');
+const User = user.Model;
 
 // @desc      Get all items
 // @route     GET /api/admin/items
@@ -21,6 +22,7 @@ exports.getItems_Admin = asyncHandler(async (req, res, next) => {
 // @access    Private
 exports.getItems = asyncHandler(async (req, res, next) => {
   const { lon, lat, distance, user } = req.params;
+  console.log(user);
 
   // Calc radius using radians
   // Divide dist by radius of Earth
@@ -49,14 +51,10 @@ exports.getItems = asyncHandler(async (req, res, next) => {
 });
 
 // @desc      Get all items posted by one user
-// @route     GET /api/items/:user
+// @route     GET /api/items/posted/:user
 // @access    Private
 exports.getItemsPostedByUser = asyncHandler(async (req, res, next) => {
-  const { user } = req.params;
-
-  console.log(user);
-
-  const items = await Item.find({ user: user });
+  const items = await Item.find({ user: req.params.user });
 
   res.status(200).json({
     success: true,
@@ -66,7 +64,7 @@ exports.getItemsPostedByUser = asyncHandler(async (req, res, next) => {
   next();
 });
 
-// @desc      Get all items posted by one user
+// @desc      Get all requests sent by the user
 // @route     GET /api/items/:id/requests
 // @access    Private
 exports.getRequests = asyncHandler(async (req, res, next) => {
@@ -100,7 +98,6 @@ exports.getRequests = asyncHandler(async (req, res, next) => {
 // @route     GET /api/items/:id
 // @access    Private/Admin
 exports.getItem = asyncHandler(async (req, res, next) => {
-  console.log('Finding item');
   const item = await Item.findById(req.params.id);
   if (!item) return next(new ErrorResponse(404, 'Item not found'));
   res.status(200).json({
@@ -125,13 +122,11 @@ exports.createItem = asyncHandler(async (req, res, next) => {
 });
 
 // @desc      Update item
-// @route     PUT /api/items/:id
+// @route     PATCH /api/items/:id
 // @access    Private/Admin
 exports.updateItem = asyncHandler(async (req, res, next) => {
-  console.log('In update');
   const item = await Item.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-    runValidators: true,
+    returnOriginal: false,
   });
 
   res.status(200).json({
@@ -195,10 +190,23 @@ exports.addApprovedUser = asyncHandler(async (req, res, next) => {
 // @route     DELETE /api/items/:id
 // @access    Private/Admin
 exports.deleteItem = asyncHandler(async (req, res, next) => {
-  const item = await Item.findByIdAndDelete(req.params.id);
-
+  const id = req.params.id;
+  const item = await Item.deleteOne(
+    { _id: req.params.id },
+    {
+      returnOriginal: false,
+    }
+  );
+  User.updateMany(
+    {},
+    { $pull: { requests: id } },
+    {
+      returnOriginal: false,
+    }
+  );
   res.status(200).json({
     success: true,
+    data: 'item',
   });
   next();
 });
