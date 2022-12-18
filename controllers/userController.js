@@ -173,7 +173,7 @@ exports.getRequests = asyncHandler(async (req, res, next) => {
 });
 
 // @desc      Apply as Volunteer
-// @route     POST /api/users/apply/:id
+// @route     PATCH /api/users/apply/:id
 // @access    Private
 exports.applyAsVolunteer = asyncHandler(async (req, res, next) => {
   const userID = req.params.id;

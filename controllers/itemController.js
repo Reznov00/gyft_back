@@ -21,8 +21,8 @@ exports.getItems_Admin = asyncHandler(async (req, res, next) => {
 // @route     GET /api/items/:user/:lat/:lon/:distance
 // @access    Private
 exports.getItems = asyncHandler(async (req, res, next) => {
-  const { lon, lat, distance, user } = req.params;
-  console.log(user);
+  const { lon, lat, distance, user, category } = req.params;
+  console.log(lon, lat, distance);
 
   // Calc radius using radians
   // Divide dist by radius of Earth
@@ -38,6 +38,7 @@ exports.getItems = asyncHandler(async (req, res, next) => {
           },
         },
       },
+      { category: { $eq: category } },
       { user: { $ne: user } },
     ],
   });
@@ -111,7 +112,6 @@ exports.getItem = asyncHandler(async (req, res, next) => {
 // @route     POST /api/items
 // @access    Private
 exports.createItem = asyncHandler(async (req, res, next) => {
-  console.log(req.body);
   const item = await Item.create(req.body);
   if (!item) return next(new ErrorResponse(401, 'Error posting item'));
   res.status(200).json({

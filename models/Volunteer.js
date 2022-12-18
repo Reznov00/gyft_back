@@ -2,11 +2,6 @@ const mongoose = require('mongoose');
 const user = require('./User');
 const UserSchema = user.Schema;
 const VolunteerSchema = mongoose.Schema({
-  // applicant: {
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   ref: 'User',
-  //   unique: true,
-  // },
   applicant: UserSchema,
   exp: { type: Number, required: true },
   specialization: { type: String, required: true },

@@ -26,7 +26,7 @@ router.route('/:user/add').put(addInterestingItem);
 router.route('/:user/remove').put(deleteInterestingItem);
 router.route('/:id/requests').post(getRequests);
 
-router.route('/apply/:id').post(applyAsVolunteer);
+router.route('/apply/:id').patch(applyAsVolunteer);
 // router.route('/applied/:id').post(changeApplicationStatus);
 
 router.route('/:id').get(getLoggedUser).put(updateUser).delete(deleteUser);

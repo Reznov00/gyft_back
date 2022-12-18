@@ -10,7 +10,7 @@ const {
 
 const router = express.Router({ mergeParams: true });
 
-router.route('/:user/:lat/:lon/:distance').get(getRequests);
+router.route('/:user/:lat/:lon/:distance/:category').get(getRequests);
 
 router.route('/posted/:user').get(getRequestsPostedByUser);
 

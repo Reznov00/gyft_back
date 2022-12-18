@@ -16,6 +16,9 @@ const ItemSchema = mongoose.Schema({
   phone: {
     type: String,
   },
+  category: {
+    type: String,
+  },
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   interested: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
   approved: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],

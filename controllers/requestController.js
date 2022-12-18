@@ -18,8 +18,8 @@ exports.getRequests_Admin = asyncHandler(async (req, res, next) => {
 // @route     GET /api/requests/:lat/:lon/:distance
 // @access    Private
 exports.getRequests = asyncHandler(async (req, res, next) => {
-  const { lon, lat, distance, user } = req.params;
-  console.log(user);
+  const { lon, lat, distance, user, category } = req.params;
+  console.log(lon, lat, distance, user, category);
 
   // Calc radius using radians
   // Divide dist by radius of Earth
@@ -35,6 +35,7 @@ exports.getRequests = asyncHandler(async (req, res, next) => {
           },
         },
       },
+      { category: { $eq: category } },
       { user: { $ne: user } },
     ],
   });

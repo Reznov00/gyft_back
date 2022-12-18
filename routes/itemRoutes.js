@@ -16,7 +16,7 @@ const router = express.Router({ mergeParams: true });
 
 router.route('/posted/:user').get(getItemsPostedByUser);
 router.route('/:id/requests').get(getRequests);
-router.route('/:user/:lat/:lon/:distance').get(getItems);
+router.route('/:user/:lat/:lon/:distance/:category').get(getItems);
 
 router.route('/:id/add').put(addInterestedUser);
 router.route('/:id/remove').put(deleteInterestedUser);
