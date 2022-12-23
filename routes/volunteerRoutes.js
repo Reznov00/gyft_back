@@ -6,7 +6,7 @@ const {
 
 const router = express.Router({ mergeParams: true });
 
-router.route('/volunteers').get(getVolunteers);
-router.route('/volunteers/approve/:id').patch(approveVolunteer);
+router.route('/').get(getVolunteers);
+router.route('/approve/:id').patch(approveVolunteer);
 
 module.exports = router;
