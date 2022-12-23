@@ -14,6 +14,7 @@ const users = require('./routes/userRoutes');
 const items = require('./routes/itemRoutes');
 const requests = require('./routes/requestRoutes');
 const queries = require('./routes/queryRoutes');
+const volunteers = require('./routes/volunteerRoutes');
 
 //Initialize Express App
 const app = express();
@@ -31,7 +32,8 @@ app.use(express.urlencoded({ extended: false }));
 // app.use(express.static('public'));
 
 // Registering Routes to the Express App
-app.use('/api', users);
+app.use('/api/users', users);
+app.use('/api/volunteers', volunteers);
 app.use('/api/items', items);
 app.use('/api/requests', requests);
 app.use('/api/queries', queries);
