@@ -38,7 +38,7 @@ exports.getVolunteers = asyncHandler(async (req, res, next) => {
 });
 
 // @desc      Approve volunteers
-// @route     PATCH /api/users/volunteers/approve/:id
+// @route     PATCH /api/volunteers/approve/:id
 // @access    Admin
 exports.approveVolunteer = asyncHandler(async (req, res, next) => {
   const vol = await Volunteer.findById(req.params.id);

@@ -19,21 +19,25 @@ const {
 
 const router = express.Router({ mergeParams: true });
 
-router.route('/:email/:password').get(getUser);
+router.route('/users/:email/:password').get(getUser);
 
-router.route('/').get(getUsers).post(createUser);
+router.route('/users/').get(getUsers).post(createUser);
 router.route('/volunteers').get(getVolunteers);
 router.route('/volunteers/approve/:id').patch(approveVolunteer);
-router.route('/verify').post(verifyUser);
+router.route('/users/verify').post(verifyUser);
 
-router.route('/:user/add').put(addInterestingItem);
-router.route('/:user/remove').put(deleteInterestingItem);
-router.route('/:id/requests').post(getRequests);
+router.route('/users/:user/add').put(addInterestingItem);
+router.route('/users/:user/remove').put(deleteInterestingItem);
+router.route('/users/:id/requests').post(getRequests);
 
-router.route('/apply/:id').patch(applyAsVolunteer);
+router.route('/users/apply/:id').patch(applyAsVolunteer);
 // router.route('/applied/:id').post(changeApplicationStatus);
 
-router.route('/:id').get(getLoggedUser).put(updateUser).delete(deleteUser);
-router.route('/change/:id').put(changePassword);
+router
+  .route('/users/:id')
+  .get(getLoggedUser)
+  .put(updateUser)
+  .delete(deleteUser);
+router.route('/users/change/:id').put(changePassword);
 
 module.exports = router;

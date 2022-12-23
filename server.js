@@ -31,7 +31,7 @@ app.use(express.urlencoded({ extended: false }));
 // app.use(express.static('public'));
 
 // Registering Routes to the Express App
-app.use('/api/users', users);
+app.use('/api', users);
 app.use('/api/items', items);
 app.use('/api/requests', requests);
 app.use('/api/queries', queries);
