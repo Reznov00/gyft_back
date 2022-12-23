@@ -25,11 +25,18 @@ exports.getUsers = asyncHandler(async (req, res, next) => {
   });
 });
 
-/*
-req has 2 things
-params = req.params.id
-body
-*/
+// @desc      Get all volunteers
+// @route     GET /api/users/volunteers
+// @access    Admin
+exports.getVolunteers = asyncHandler(async (req, res, next) => {
+  const vol = await Volunteer.find();
+  res.status(200).json({
+    success: true,
+    count: vol.length,
+    data: vol,
+  });
+});
+
 // @desc      Get single user
 // @route     GET /api/users/:id
 // @access    Private

@@ -13,6 +13,7 @@ const {
   changeApplicationStatus,
   verifyUser,
   changePassword,
+  getVolunteers,
 } = require('../controllers/userController');
 
 const router = express.Router({ mergeParams: true });
@@ -20,6 +21,7 @@ const router = express.Router({ mergeParams: true });
 router.route('/:email/:password').get(getUser);
 
 router.route('/').get(getUsers).post(createUser);
+router.route('/volunteers').get(getVolunteers);
 router.route('/verify').post(verifyUser);
 
 router.route('/:user/add').put(addInterestingItem);
