@@ -37,6 +37,26 @@ exports.getVolunteers = asyncHandler(async (req, res, next) => {
   });
 });
 
+// @desc      Approve volunteers
+// @route     PATCH /api/users/volunteers/approve/:id
+// @access    Admin
+exports.approveVolunteer = asyncHandler(async (req, res, next) => {
+  const vol = await Volunteer.findById(req.params.id);
+  const updated = await User.findByIdAndUpdate(
+    vol.applicant._id,
+    {
+      'volunteer.status': true,
+    },
+    { returnOriginal: false }
+  ).then(async () => {
+    await Volunteer.findByIdAndDelete(req.params.id);
+  });
+  res.status(200).json({
+    success: true,
+    data: updated,
+  });
+});
+
 // @desc      Get single user
 // @route     GET /api/users/:id
 // @access    Private
