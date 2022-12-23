@@ -62,7 +62,6 @@ exports.getItemsPostedByUser = asyncHandler(async (req, res, next) => {
     count: items.length,
     data: items,
   });
-  next();
 });
 
 // @desc      Get all requests sent by the user
@@ -99,6 +98,7 @@ exports.getRequests = asyncHandler(async (req, res, next) => {
 // @route     GET /api/items/:id
 // @access    Private/Admin
 exports.getItem = asyncHandler(async (req, res, next) => {
+  console.log(req.params.id);
   const item = await Item.findById(req.params.id);
   if (!item) return next(new ErrorResponse(404, 'Item not found'));
   res.status(200).json({

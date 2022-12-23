@@ -21,7 +21,7 @@ const app = express();
 //Function call to connect to Database
 connectDB();
 
-app.get('/', (req, res) => res.send('Welcome to GYFT API'));
+app.get('/', (req, res) => res.send('Welcome to GYFT'));
 
 // app.use(fileUpload())
 app.use(express.static(path.join(__dirname, 'public')));

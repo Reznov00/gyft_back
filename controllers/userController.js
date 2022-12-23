@@ -7,9 +7,15 @@ const Volunteer = require('../models/Volunteer');
 const bcrypt = require('bcrypt');
 const nodemailer = require('nodemailer');
 
+/*
+200 --- OK! 
+400 --- User End 
+500 --- Server/App End
+*/
+
 // @desc      Get all users
 // @route     GET /api/users
-// @access    Private/Admin
+// @access    Admin
 exports.getUsers = asyncHandler(async (req, res, next) => {
   const users = await User.find();
   res.status(200).json({
@@ -19,9 +25,14 @@ exports.getUsers = asyncHandler(async (req, res, next) => {
   });
 });
 
+/*
+req has 2 things
+params = req.params.id
+body
+*/
 // @desc      Get single user
-// @route     GET /api/users/:email/:password
-// @access    Private/Admin
+// @route     GET /api/users/:id
+// @access    Private
 exports.getLoggedUser = asyncHandler(async (req, res, next) => {
   const { id } = req.params;
   const user = await User.findById(id);
@@ -32,17 +43,17 @@ exports.getLoggedUser = asyncHandler(async (req, res, next) => {
   });
 });
 
-// @desc      Get single user
+// @desc      Get single user/Login user
 // @route     GET /api/users/:email/:password
-// @access    Private/Admin
+// @access    Private
 exports.getUser = asyncHandler(async (req, res, next) => {
   const { email, password } = req.params;
   if (!email || !password)
-    return next(new ErrorResponse(400, 'Fields missing'));
-  const user = await User.find({ email: email });
+    return next(new ErrorResponse(403, 'Fields missing'));
+  const user = await User.findOne({ email });
   if (!user) return next(new ErrorResponse(404, 'User not found'));
-  console.log(password.blue.bold, user[0].password.green.bold);
-  await bcrypt.compare(password, user[0].password, (err, same) => {
+  console.log(password, '\n', user.password);
+  await bcrypt.compare(password, user.password, (err, same) => {
     if (err) return next(new ErrorResponse(500, 'Failed to compare password'));
     if (same) {
       res.status(200).json({
@@ -152,7 +163,7 @@ exports.deleteInterestingItem = asyncHandler(async (req, res, next) => {
   next();
 });
 
-// @desc      Get the requests
+// @desc      Get the sent requests
 // @route     POST /api/users/:id/requests
 // @access    Private
 exports.getRequests = asyncHandler(async (req, res, next) => {
@@ -178,7 +189,8 @@ exports.getRequests = asyncHandler(async (req, res, next) => {
 exports.applyAsVolunteer = asyncHandler(async (req, res, next) => {
   const userID = req.params.id;
   const vol = await Volunteer.create(req.body);
-  if (!vol) return next(new ErrorResponse(401, 'Error posting item'));
+  if (!vol)
+    return next(new ErrorResponse(401, 'Error while registering volunteer'));
   const user = await User.findByIdAndUpdate(
     userID,
     {
@@ -234,7 +246,7 @@ exports.changePassword = asyncHandler(async (req, res, next) => {
     } else {
       res.status(404).json({
         error: true,
-        msg: 'Wrong password entere',
+        msg: 'Wrong password entered',
       });
     }
   });
